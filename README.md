@@ -101,6 +101,5 @@ export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 python scripts/generate/sample_LM.py \
         --language_model_checkpoint language_model_checkpoints/GPT-Neo/With_Title \
         --output_file generation.pubmed.w_title.gpt2.jsonl \
-        --with_title \
         --num_samples 10000
 ```
