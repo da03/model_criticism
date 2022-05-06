@@ -5,7 +5,7 @@ import argparse
 import tqdm
 
 import torch
-from transformers import AutoModelForCausalLM, GPT2Tokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 parser = argparse.ArgumentParser(description='Sample from the language models.')
@@ -27,8 +27,7 @@ args = parser.parse_args()
 
 
 def main(args):
-    # The tokenizer is GPT-2 for both GPT-2 and GPT-Neo LMs
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    tokenizer = AutoTokenizer.from_pretrained(args.language_model_checkpoint)
     
     eos_token = """<|endoftext|>"""
     eos_id = tokenizer.encode(eos_token, add_special_tokens=False, return_tensors='pt').item()
