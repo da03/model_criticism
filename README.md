@@ -61,7 +61,7 @@ export TRAIN_BATCH_SIZE=4 # batch size for training, this mignt need to be set t
 export ACCUMULATION=2
 export EVAL_BATCH_SIZE=8
 export SAVE_TOTAL_LIMIT=1
-export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
+export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 export TRAIN_FILE=data/train.w_title.txt
 export TEST_FILE=data/val.w_title.txt
 python examples/legacy/run_language_modeling.py \
