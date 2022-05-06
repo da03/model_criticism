@@ -80,10 +80,10 @@ def main(args):
                             section_text = section_text.strip()
                             if len(section_text) == 0:
                                 invalid = True
+                            section_names.append(section_name)
+                            sections.append(section_text)
                         except Exception as e:
                             invalid = True
-                        section_names.append(section_name)
-                        sections.append(section_text)
                 else:
                     sections = sections_all
                     section_names = None
