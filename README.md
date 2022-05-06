@@ -25,7 +25,7 @@ tar zxf data.tgz
 To train a language model in the W/O Title setting, use the below command:
 
 ```
-export MODEL=EleutherAI/gpt-neox-20b # or gpt-neo-2.7B, either would be nice
+export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
 export TRAIN_BATCH_SIZE=4 # batch size for training, this mignt need to be set to smaller values if necessary?
@@ -54,7 +54,7 @@ python examples/legacy/run_language_modeling.py \
 (If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). To train a language model in the W/ Title setting, use the below command:
 
 ```
-export MODEL=EleutherAI/gpt-neox-20b # or gpt-neo-2.7B, either would be nice
+export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
 export TRAIN_BATCH_SIZE=4 # batch size for training, this mignt need to be set to smaller values if necessary?
