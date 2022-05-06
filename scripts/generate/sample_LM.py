@@ -19,8 +19,6 @@ parser.add_argument('--num_samples', type=int, default=10000,
                     help='Number of articles to sample.')
 parser.add_argument('--max_length', type=int, default=20000,
                     help='Maximum possible generation length. Generation will stop after generating this many of tokens, if no eos token is generated.')
-parser.add_argument('--save_every', type=int, default=10,
-                    help='Save generations to file every save_every articles.')
 parser.add_argument('--seed', type=int, default=1234,
                     help='Random seed.')
 args = parser.parse_args()
@@ -32,7 +30,6 @@ def main(args):
     eos_token = """<|endoftext|>"""
     eos_id = tokenizer.encode(eos_token, add_special_tokens=False, return_tensors='pt').item()
 
-    #import pdb; pdb.set_trace()
     assert eos_id == tokenizer.eos_token_id
 
     # Load LM
@@ -48,7 +45,6 @@ def main(args):
             max_length = args.max_length
             
             num_generated = 0
-            samples = []
             while num_generated < args.num_samples:
                 prefix = """<|endoftext|>\n<|endoftext|>"""
                 input_ids = tokenizer.encode(prefix, add_special_tokens=False, return_tensors='pt').cuda()
@@ -91,11 +87,10 @@ def main(args):
                     continue
                 num_generated += 1
                 print (f'{num_generated} out of {args.num_samples}')
+                sys.stdout.flush()
                 sample = {'section_names': section_names, 'sections': sections}
-                samples.append(sample)
                 fout.write(json.dumps(sample) + '\n')
-                if len(samples) % args.save_every == 0:
-                    fout.flush()
+                fout.flush()
 
 if __name__ == '__main__':
     main(args)
