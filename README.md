@@ -45,7 +45,7 @@ python examples/legacy/run_language_modeling.py \
        --do_train \
        --do_eval \
        --train_data_file=${TRAIN_FILE} \
-       --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=1 \
+       --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=${SAVE_TOTAL_LIMIT} \
        --learning_rate=${LR} --num_train_epochs=${EPOCHS} --load_best_model_at_end=True \
        --evaluation_strategy=epoch --save_strategy=epoch > log.trainLM.wo_title.gptneo 2>&1&
 
@@ -74,7 +74,7 @@ python examples/legacy/run_language_modeling.py \
        --do_train \
        --do_eval \
        --train_data_file=${TRAIN_FILE} \
-       --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=1 \
+       --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=${SAVE_TOTAL_LIMIT} \
        --learning_rate=${LR} --num_train_epochs=${EPOCHS} --load_best_model_at_end=True \
        --evaluation_strategy=epoch --save_strategy=epoch > log.trainLM.w_title.gptneo 2>&1&
 
