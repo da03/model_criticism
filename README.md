@@ -91,7 +91,7 @@ export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
 stdbuf -oL python scripts/generate/sample_LM.py \
         --language_model_checkpoint language_model_checkpoints/GPT-Neo/Without_Title \
         --output_file generation.pubmed.wo_title.gpt2.jsonl \
-        --num_samples 10000
+        --num_samples 10000 > log.gen.wo_title.gptneo 2>&1&
 ```
 
 (It would be nice if you have bandwidth for running this setting, if not please just ignore this setting). For the W/ Title setting (if 10k samples is too much, I think 1k is good as well by using `--num_samples 1000`):
@@ -101,5 +101,5 @@ export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 python scripts/generate/sample_LM.py \
         --language_model_checkpoint language_model_checkpoints/GPT-Neo/With_Title \
         --output_file generation.pubmed.w_title.gpt2.jsonl \
-        --num_samples 10000
+        --num_samples 10000 > log.gen.w_title.gptneo 2>&1&
 ```
