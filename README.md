@@ -51,7 +51,7 @@ python examples/legacy/run_language_modeling.py \
 
 ```
 
-(If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). To train a language model in the W/ Title setting, use the below command:
+(It would be nice if you have bandwidth for running this setting, if not please just ignore this setting). To train a language model in the W/ Title setting, use the below command:
 
 ```
 export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
@@ -84,7 +84,7 @@ python examples/legacy/run_language_modeling.py \
 
 I forgot to ask during our meeting: do you plan to share the trained LM after training? I'm not sure if I have the infrastructure for sampling either... Maybe we can discuss after training?
 
-To generate, for the W/O Title setting (if 10k samples is too much, I think 1k is good as well):
+To generate, for the W/O Title setting (if 10k samples is too much, I think 1k is good as well by using `--num_samples 1000`):
 
 ```
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
@@ -94,7 +94,7 @@ stdbuf -oL python scripts/generate/sample_LM.py \
         --num_samples 10000
 ```
 
-(If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). For the W/ Title setting:
+(It would be nice if you have bandwidth for running this setting, if not please just ignore this setting). For the W/ Title setting (if 10k samples is too much, I think 1k is good as well by using `--num_samples 1000`):
 
 ```
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
