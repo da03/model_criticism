@@ -90,7 +90,7 @@ To generate, for the W/O Title setting (if 10k samples is too much, I think 1k i
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
 stdbuf -oL python scripts/generate/sample_LM.py \
         --language_model_checkpoint language_model_checkpoints/GPT-Neo/Without_Title \
-        --output_file generation.pubmed.wo_title.gpt2.jsonl \
+        --output_file generation.wo_title.gpt2.jsonl \
         --num_samples 10000 > log.gen.wo_title.gptneo 2>&1&
 ```
 
@@ -100,6 +100,6 @@ stdbuf -oL python scripts/generate/sample_LM.py \
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 python scripts/generate/sample_LM.py \
         --language_model_checkpoint language_model_checkpoints/GPT-Neo/With_Title \
-        --output_file generation.pubmed.w_title.gpt2.jsonl \
+        --output_file generation.w_title.gpt2.jsonl \
         --num_samples 10000 > log.gen.w_title.gptneo 2>&1&
 ```
