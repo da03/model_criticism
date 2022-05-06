@@ -22,7 +22,7 @@ tar zxf data.tgz
 
 ### Train LMs
 
-To train a language model in the W/O Title setting, we use the below command:
+To train a language model in the W/O Title setting, use the below command:
 
 ```
 export MODEL=EleutherAI/gpt-neox-20b # or gpt-neo-2.7B, either would be nice
@@ -51,7 +51,7 @@ python examples/legacy/run_language_modeling.py \
 
 ```
 
-(If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). To train a language model in the W/ Title setting, we use the below command:
+(If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). To train a language model in the W/ Title setting, use the below command:
 
 ```
 export MODEL=EleutherAI/gpt-neox-20b # or gpt-neo-2.7B, either would be nice
@@ -94,7 +94,8 @@ stdbuf -oL python scripts/generate/sample_LM.py \
         --num_samples 10000
 ```
 
-For the W/ Title setting:
+(If would be nice if you have bandwidth for running this setting, if not please just ignore this setting). For the W/ Title setting:
+
 ```
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 python scripts/generate/sample_LM.py \
