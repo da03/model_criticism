@@ -7,6 +7,8 @@ The code is adapted from HuggingFace transformers.
 The code has been tested on Python 3.8. In addition, we need to install `transformers` included in this repo by
 
 ```
+pip install sklearn
+pip install datasets
 pip install --editable .
 ```
 
@@ -14,7 +16,7 @@ pip install --editable .
 ## Data
 
 ```
-wget http://52.27.132.169/static/data.tgz
+wget http://52.24.243.180/static/data.tgz
 tar zxf data.tgz
 ```
 
@@ -28,14 +30,14 @@ To train a language model in the W/O Title setting, use the below command:
 export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
-export TRAIN_BATCH_SIZE=4 # batch size for training, this might need to be set to smaller values if necessary?
-export ACCUMULATION=2 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
+export TRAIN_BATCH_SIZE=2 # batch size for training, this might need to be set to smaller values if necessary?
+export ACCUMULATION=1 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
 export EVAL_BATCH_SIZE=8 # batch size for evaluation, this might need to be set to a smaller value.
 export SAVE_TOTAL_LIMIT=1
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
 export TRAIN_FILE=data/train.wo_title.txt
 export TEST_FILE=data/val.wo_title.txt
-python examples/legacy/run_language_modeling.py \
+python examples/pytorch/language-modeling/run_clm.py \
        --per_device_train_batch_size=${TRAIN_BATCH_SIZE} \
        --per_device_eval_batch_size=${EVAL_BATCH_SIZE} \
        --gradient_accumulation_steps=${ACCUMULATION} \
@@ -44,10 +46,11 @@ python examples/legacy/run_language_modeling.py \
        --model_name_or_path=${MODEL} \
        --do_train \
        --do_eval \
-       --train_data_file=${TRAIN_FILE} \
-       --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=${SAVE_TOTAL_LIMIT} \
+       --train_file=${TRAIN_FILE} \
+       --validation_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=${SAVE_TOTAL_LIMIT} \
        --learning_rate=${LR} --num_train_epochs=${EPOCHS} --load_best_model_at_end=True \
-       --evaluation_strategy=epoch --save_strategy=epoch > log.trainLM.wo_title.gptneo 2>&1&
+       --evaluation_strategy=epoch --save_strategy=epoch \
+       --block_size 2048 > log.trainLM.wo_title.gptneo 2>&1&
 
 ```
 
@@ -57,14 +60,14 @@ python examples/legacy/run_language_modeling.py \
 export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
-export TRAIN_BATCH_SIZE=4 # batch size for training, this might need to be set to smaller values if necessary?
-export ACCUMULATION=2 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
+export TRAIN_BATCH_SIZE=2 # batch size for training, this might need to be set to smaller values if necessary?
+export ACCUMULATION=1 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
 export EVAL_BATCH_SIZE=8 # batch size for evaluation, this might need to be set to a smaller value.
 export SAVE_TOTAL_LIMIT=1
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
 export TRAIN_FILE=data/train.w_title.txt
 export TEST_FILE=data/val.w_title.txt
-python examples/legacy/run_language_modeling.py \
+python examples/pytorch/language-modeling/run_clm.py \
        --per_device_train_batch_size=${TRAIN_BATCH_SIZE} \
        --per_device_eval_batch_size=${EVAL_BATCH_SIZE} \
        --gradient_accumulation_steps=${ACCUMULATION} \
@@ -76,7 +79,8 @@ python examples/legacy/run_language_modeling.py \
        --train_data_file=${TRAIN_FILE} \
        --eval_data_file=${TEST_FILE} --overwrite_output_dir --save_total_limit=${SAVE_TOTAL_LIMIT} \
        --learning_rate=${LR} --num_train_epochs=${EPOCHS} --load_best_model_at_end=True \
-       --evaluation_strategy=epoch --save_strategy=epoch > log.trainLM.w_title.gptneo 2>&1&
+       --evaluation_strategy=epoch --save_strategy=epoch \
+       --block_size 2048 > log.trainLM.w_title.gptneo 2>&1&
 
 ```
 

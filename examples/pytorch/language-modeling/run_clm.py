@@ -420,6 +420,9 @@ def main():
             )
         block_size = min(data_args.block_size, tokenizer.model_max_length)
 
+    print ('-----')
+    print (block_size)
+
     # Main data processing function that will concatenate all texts from our dataset and generate chunks of block_size.
     def group_texts(examples):
         # Concatenate all texts.
