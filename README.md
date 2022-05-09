@@ -30,8 +30,8 @@ To train a language model in the W/O Title setting, use the below command:
 export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
-export TRAIN_BATCH_SIZE=2 # batch size for training, this might need to be set to smaller values if necessary?
-export ACCUMULATION=1 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
+export TRAIN_BATCH_SIZE=4 # batch size for training, this might need to be set to smaller values if necessary?
+export ACCUMULATION=2 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
 export EVAL_BATCH_SIZE=8 # batch size for evaluation, this might need to be set to a smaller value.
 export SAVE_TOTAL_LIMIT=1
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/Without_Title
@@ -60,8 +60,8 @@ python examples/pytorch/language-modeling/run_clm.py \
 export MODEL=EleutherAI/gpt-neo-125M # either gpt-neox-20b or gpt-neo-2.7B would be nice
 export LR=5e-5
 export EPOCHS=30
-export TRAIN_BATCH_SIZE=2 # batch size for training, this might need to be set to smaller values if necessary?
-export ACCUMULATION=1 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
+export TRAIN_BATCH_SIZE=4 # batch size for training, this might need to be set to smaller values if necessary?
+export ACCUMULATION=2 # accumulation steps. The effective total batch size should be 8. For multi-GPU training maybe this should be set to 1?
 export EVAL_BATCH_SIZE=8 # batch size for evaluation, this might need to be set to a smaller value.
 export SAVE_TOTAL_LIMIT=1
 export SAVE_FOLDER=language_model_checkpoints/GPT-Neo/With_Title
